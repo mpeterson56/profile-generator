@@ -1,4 +1,4 @@
-//const employee = require('./employee')
+const employee = require('./lib/employee')
 const fs = require('fs');
 const inquirer = require('inquirer');
 const engineer = require('./lib/engineer');
