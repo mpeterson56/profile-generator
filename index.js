@@ -40,15 +40,16 @@ const promptquestions = () => {
         type: 'input',
         name: 'email',
         message: 'What is your email? (Required)',
-        validate: githubInput => {
-          if (githubInput) {
-            return true;
+        validate:emailInput => {
+          valid = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(emailInput)
+          if (valid) {
+              return true;
           } else {
-            console.log('You need to enter your email');
-            return false;
+              console.log('Please enter a valid Email address.');
+              return false;
           }
         }
-      },
+        },
 
       {
         type: 'input',
@@ -89,6 +90,14 @@ const promptQuestions = QuestionsData => {
             type: 'input',
             name: 'github',
             message: 'Enter the engineer github.',
+            validate: githubInput => {
+              if (githubInput) {
+                return true;
+              } else {
+                console.log('Please enter their github!');
+                return false;
+              }
+            },
          when: ({ engineer}) => engineer,
           },
           {
@@ -99,10 +108,6 @@ const promptQuestions = QuestionsData => {
           },
         
          
-
-
-
-
 
           {
             type: 'input',
@@ -137,14 +142,14 @@ const promptQuestions = QuestionsData => {
           {
             type: 'input',
             name: 'email',
-            message: 'What is their email? (Required)',
-            
-            validate: emailInput => {
-              if (emailInput) {
-                return true;
+            message: 'What is their email? (Required)',  
+            validate:emailInput => {
+              valid = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(emailInput)
+              if (valid) {
+                  return true;
               } else {
-                console.log('You need to enter their email');
-                return false;
+                  console.log('Please enter a valid Email address.');
+                  return false;
               }
             }
           },

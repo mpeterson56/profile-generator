@@ -11,7 +11,7 @@ const generateEmployee = employee => {
  <h3 class="uk-background-primary" >   ${role}   </h3>
  <h4>    ${id}   </h4>
  <h4>   ${email}     </h4>
- <h4>    ${school} ${github} </h4>
+ <h4>    ${school || github} </h4>
  
     </div>
        <div>
@@ -26,7 +26,7 @@ const generateEmployee = employee => {
   
 
 
-const generatePage = (name, role, id , email , github,school, officeNumber ) => {
+const generatePage = (name, role, id , email , officeNumber ) => {
     return `
     <!DOCTYPE html> 
     <html lang="en"> 
