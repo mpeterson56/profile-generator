@@ -1,11 +1,11 @@
-const engineer = require('../lib/engineer.js');
+const Engineer = require('../lib/engineer.js');
 
 test('creates a engineer object', () => {
-    const engineer = new engineer('Dave');
+    const engineer = new Engineer('Dave',99, 'dave@mail', 'github');
   
-    expect(engineer.name).toBe('Dave');
+    expect(engineer.name).toEqual('Dave');
     expect(engineer.id).toEqual(expect.any(Number));
-    expect(engineer.email).toEqual(expect.any(email));
-   
+    expect(engineer.email).toEqual('dave@mail');
+    expect(engineer.github) .toEqual('github');
   
   });

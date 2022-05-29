@@ -1,4 +1,33 @@
+const generateEmployee = employee => {
+    if(!employee){return ``;}
+   return`
+    <body class="uk-grid-small uk-child-width-expand uk-text-center uk-flex-center">
+    <div class=" manager uk-card uk-card-default uk-card-body ">
+    ${employee
+        .map(({name,role,id,email,school,github}) => {
+            return`
+    
+ <h2 class="uk-background-primary" > ${name}  </h2>
+ <h3 class="uk-background-primary" >   ${role}   </h3>
+ <h4>    ${id}   </h4>
+ <h4>   ${email}     </h4>
+ <h4>    ${school} ${github} </h4>
+ 
+    </div>
+       <div>
+      `;
+    })
+    .join('')}
+    
+    </div>
+      
+    `;
+};
+  
 
+
+const generatePage = (name, role, id , email , github,school, officeNumber ) => {
+    return `
     <!DOCTYPE html> 
     <html lang="en"> 
     <head>
@@ -23,41 +52,20 @@
         
     <body class="uk-grid-small uk-child-width-expand uk-text-center uk-flex-center">
    <div class=" manager uk-card uk-card-default uk-card-body ">
-<h2 class="uk-background-primary" > [object Object]  </h2>
-<h3 class="uk-background-primary" >   undefined   </h3>
-<h4>    undefined   </h4>
-<h4>   undefined     </h4>
-<h4>    undefined  </h4>
+<h2 class="uk-background-primary" > ${name}  </h2>
+<h3 class="uk-background-primary" >   ${role}   </h3>
+<h4>    ${id}   </h4>
+<h4>   ${email}     </h4>
+<h4>    ${officeNumber}  </h4>
    </div>
-   employee => {
-    if(!employee){return ``;}
-   return`
-    <body class="uk-grid-small uk-child-width-expand uk-text-center uk-flex-center">
-    <div class=" manager uk-card uk-card-default uk-card-body ">
-    ${employee
-        .map(({name,role,id,email,school,github}) => {
-            return`
-    
- <h2 class="uk-background-primary" > ${name}  </h2>
- <h3 class="uk-background-primary" >   ${role}   </h3>
- <h4>    ${id}   </h4>
- <h4>   ${email}     </h4>
- <h4>    ${school} ${github} </h4>
- 
-    </div>
-       <div>
-      `;
-    })
-    .join('')}
-    
-    </div>
-      
-    `;
-}
+   ${generateEmployee}
           
     </body>
     
     <script src="https://cdn.jsdelivr.net/npm/uikit@3.14.0/dist/js/uikit.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/uikit@3.14.0/dist/js/uikit-icons.min.js"></script>
     </html>
-    
+    `;
+  };
+
+  module.exports = generatePage;

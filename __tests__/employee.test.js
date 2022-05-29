@@ -1,11 +1,14 @@
-const employee = require('../lib/employee.js');
+
+const { expect } = require('expect');
+
+const Employee = require('../lib/employee.js');
 
 test('creates a employee object', () => {
-    const employee = new employee('Dave');
+    const employee = new Employee('Dave', 69, 'Dave@mail' );
   
-    expect(employee.name).toBe('Dave');
+    expect(employee.name).toEqual('Dave');
     expect(employee.id).toEqual(expect.any(Number));
-    expect(employee.email).toEqual(expect.any(email));
+    expect(employee.email).toEqual('Dave@mail');
    
   
   });
