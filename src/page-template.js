@@ -1,3 +1,5 @@
+const manager = require("../lib/manager")
+
 const generateManager = manager => {
     return`
     
@@ -44,10 +46,35 @@ const generateIntern = Intern => {
   `
 }
 
+generateTeam = (employeeData) => {
+teamArray = [];
+
+for (let i = 0; i < employeeData.length; i++){
+  const Employee = employeeData[i];
+  
+ if (role === 'manager'){
+   const manager=generateManager(Employee);
+   teamArray.push(manager)
+ }
+ if (role === 'Intern'){
+  const Intern=generateIntern(Employee);
+  teamArray.push(Intern)
+}
+if (role === 'Engineer'){
+  const Engineer=generateEngineer(Employee);
+  teamArray.push(Engineer)
+}
+
+const employeeCards = teamArray.join('')
+const generateTeam = generatePage(employeeCards); 
+    return generateTeam;
+}
 
 
 
-const generatePage = (name, role, id , email , officeNumber ) =>  {
+
+
+const generatePage = function (generateManager , generateEngineer, generateIntern)   {
     return `
     <!DOCTYPE html> 
     <html lang="en"> 
@@ -83,7 +110,7 @@ const generatePage = (name, role, id , email , officeNumber ) =>  {
     <script src="https://cdn.jsdelivr.net/npm/uikit@3.14.0/dist/js/uikit-icons.min.js"></script>
     </html>
     `;
-
+}
   };
 
-  module.exports = generatePage;
+  module.exports = generateTeam;
