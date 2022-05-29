@@ -32,7 +32,6 @@
    employee => {
     if(!employee){return ``;}
    return`
-    <body class="uk-grid-small uk-child-width-expand uk-text-center uk-flex-center">
     <div class=" manager uk-card uk-card-default uk-card-body ">
     ${employee
         .map(({name,role,id,email,school,github}) => {
@@ -42,7 +41,7 @@
  <h3 class="uk-background-primary" >   ${role}   </h3>
  <h4>    ${id}   </h4>
  <h4>   ${email}     </h4>
- <h4>    ${school} ${github} </h4>
+ <h4>    ${school || github} </h4>
  
     </div>
        <div>

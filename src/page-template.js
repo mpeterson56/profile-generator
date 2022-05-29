@@ -1,7 +1,6 @@
 const generateEmployee = employee => {
     if(!employee){return ``;}
    return`
-    <body class="uk-grid-small uk-child-width-expand uk-text-center uk-flex-center">
     <div class=" manager uk-card uk-card-default uk-card-body ">
     ${employee
         .map(({name,role,id,email,school,github}) => {
@@ -52,11 +51,11 @@ const generatePage = (name, role, id , email , officeNumber ) => {
         
     <body class="uk-grid-small uk-child-width-expand uk-text-center uk-flex-center">
    <div class=" manager uk-card uk-card-default uk-card-body ">
-<h2 class="uk-background-primary" > ${name}  </h2>
-<h3 class="uk-background-primary" >   ${role}   </h3>
-<h4>    ${id}   </h4>
-<h4>   ${email}     </h4>
-<h4>    ${officeNumber}  </h4>
+<h2 class="uk-background-primary" > ${manager.name}  </h2>
+<h3 class="uk-background-primary" >   ${manager.role}   </h3>
+<h4>    ${manager.id}   </h4>
+<h4>   ${manager.email}     </h4>
+<h4>    ${manager.officeNumber}  </h4>
    </div>
    ${generateEmployee}
           

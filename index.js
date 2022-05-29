@@ -3,10 +3,14 @@ const fs = require('fs');
 const inquirer = require('inquirer');
 const engineer = require('./lib/engineer');
 const intern = require('./lib/intern');
-const generatePage = require('./src/page-template');
 
+const generatePage = require('./src/page-template');
+const Manager = require('./lib/manager');
+
+const employeeArray = [];
 
 const promptquestions = () => {
+  if(!Manager.employeeArray){Manager.employeeArray= [];}
     return inquirer.prompt([
       {
         type: 'input',
@@ -21,6 +25,16 @@ const promptquestions = () => {
           }
         }
       },
+{
+type:'confirm',
+name:'role',
+message: 'confirm manager?',
+default:true
+
+},
+
+
+
       {
         type: 'input',
         name: 'id',
@@ -66,12 +80,21 @@ const promptquestions = () => {
       },
 
 
- ]);
+ ]).then(addManager => {
+const {name, id ,role, email ,officeNumber} = addManager;
+const manager = new Manager (name, id,role, email , officeNumber);
+   employeeArray.push(Manager)
+ }
+   );
+ 
+ 
+ 
+
 
 };
-const promptQuestions = QuestionsData => {
-    if (!QuestionsData.employee){
-      QuestionsData.employee= [];
+const promptQuestions = employeeArray => {
+    if (!employee.employeeArray){
+      employee.employeeArray= [];
     }
     return inquirer
     .prompt([
@@ -98,13 +121,13 @@ const promptQuestions = QuestionsData => {
                 return false;
               }
             },
-         when: ({ engineer}) => engineer,
+         when: (input)=> input.role === 'engineer',
           },
           {
             type: 'input',
             name: 'school',
             message: 'Enter the interns school.',
-            when:({ intern}) => intern,
+            when:(input)=> input.role === 'intern',
           },
         
          
@@ -170,9 +193,9 @@ const promptQuestions = QuestionsData => {
     
     ])
     .then(employeeData => {
-      QuestionsData.employee.push(employeeData);
+      employee.push(employeeArray) ;
       if (employeeData.confirmAddEmployee) {
-        return promptQuestions(QuestionsData);
+        return promptQuestions(employeeArray);
       } else {
         return QuestionsData;
       }
@@ -183,8 +206,8 @@ const promptQuestions = QuestionsData => {
 
 promptquestions()
 .then(promptQuestions)
-.then(employeeData => {
-    const pageHTML = generatePage(employeeData);
+.then(employeeArray => {
+    const pageHTML = generatePage(employeeArray);
 
     fs.writeFile('./index.html', pageHTML, err => {
       if (err) throw new Error(err);
