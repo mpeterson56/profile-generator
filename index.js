@@ -1,8 +1,8 @@
-const employee = require('./lib/employee')
+const Employee = require('./lib/employee')
 const fs = require('fs');
 const inquirer = require('inquirer');
-const engineer = require('./lib/engineer');
-const intern = require('./lib/intern');
+const Engineer = require('./lib/engineer');
+const Intern = require('./lib/intern');
 
 const generatePage = require('./src/page-template');
 const Manager = require('./lib/manager');
@@ -92,9 +92,9 @@ const manager = new Manager (name, id,role, email , officeNumber);
 
 
 };
-const promptQuestions = employeeArray => {
-    if (!employee.employeeArray){
-      employee.employeeArray= [];
+const promptQuestions = () => {
+    if (!Employee.employeeArray){
+      Employee.employeeArray= [];
     }
     return inquirer
     .prompt([
@@ -192,12 +192,16 @@ const promptQuestions = employeeArray => {
     
     
     ])
-    .then(employeeData => {
-      employee.push(employeeArray) ;
-      if (employeeData.confirmAddEmployee) {
+    .then(addEmployee => {
+      const {name, id ,role, email ,github, school} = addEmployee;
+      const employee = new Employee (name, id,role, email , github, school);
+         employeeArray.push(Employee)
+
+
+      if (addEmployee.confirmAddEmployee) {
         return promptQuestions(employeeArray);
       } else {
-        return QuestionsData;
+        return Employee;
       }
     });
     };
