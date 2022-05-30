@@ -1,7 +1,5 @@
-
-
 const generateManager = manager => {
-    return`
+  return `
     
     <div class=" manager uk-card uk-card-default uk-card-body ">
     <h2 class="uk-background-primary" > ${manager.name}  </h2>
@@ -16,30 +14,30 @@ const generateManager = manager => {
 }
 
 
-const generateEngineer = Engineer => {
-  return`
+const generateEngineer = engineer => {
+  return `
   
   <div class=" Engineer uk-card uk-card-default uk-card-body ">
-  <h2 class="uk-background-primary" > ${Engineer.name}  </h2>
+  <h2 class="uk-background-primary" > ${engineer.name}  </h2>
   <h3 class="uk-background-primary" >   Engineer   </h3>
-  <h4>  ID:  ${Engineer.id}   </h4>
-  <h4>Email: <a href="mailto:${Engineer.email}">${Engineer.email}  </a>   </h4>
-  <h4>  Github: <a href="https://github.com/ ${Engineer.github}">${Engineer.github} </a>  </h4>
+  <h4>  ID:  ${engineer.id}   </h4>
+  <h4>Email: <a href="mailto:${engineer.email}">${engineer.email}  </a>   </h4>
+  <h4>  Github: <a href="https://github.com/ ${engineer.github}">${engineer.github} </a>  </h4>
      </div>
   
   
   `
 }
 
-const generateIntern = Intern => {
-  return`
+const generateIntern = intern => {
+  return `
   
   <div class=" Intern uk-card uk-card-default uk-card-body ">
-  <h2 class="uk-background-primary" > ${Intern.name}  </h2>
+  <h2 class="uk-background-primary" > ${intern.name}  </h2>
   <h3 class="uk-background-primary" >  Intern  </h3>
-  <h4>  ID:  ${Intern.id}   </h4>
-  <h4>Email: <a href="mailto:${Intern.email}">${Intern.email}  </a>   </h4>
-  <h4>  school: ${Intern.school}  </h4>
+  <h4>  ID:  ${intern.id}   </h4>
+  <h4>Email: <a href="mailto:${intern.email}">${intern.email}  </a>   </h4>
+  <h4>  school: ${intern.school}  </h4>
      </div>
   
   
@@ -47,41 +45,46 @@ const generateIntern = Intern => {
 }
 
 
-generateTeam = (employeeArray) => {
+const generateTeam = employeeArray => {
+  // let teamCard = []
   console.log(employeeArray);
-teamArray = [];
+  teamArray = [];
 
-employeeArray.forEach(element => {
-  let Employee = element;
-  let role = element.getRole();
-  console.log(element)
- if (role === 'Manager'){
-   const Manager=generateManager(Employee);
-   teamArray.push(Manager)
- }
- if (role === 'Intern'){
-  const Intern=generateIntern(Employee);
-  teamArray.push(Intern)
-}
-if (role === 'Engineer'){
-  const Engineer=generateEngineer(Employee);
-  teamArray.push(Engineer)
-}
+  employeeArray.forEach(element => {
+    let Employee = element;
+    let role = element.getRole();
+    console.log(element)
 
-const employeeCards = teamArray.join('')
+    if (role === 'Manager') {
+      const manager = generateManager(Employee);
+      teamArray.push(manager)
+    }
 
-console.log(employeeCards)
+    if (role === 'Intern') {
+      const intern = generateIntern(Employee);
+      teamArray.push(intern)
+    }
+
+    if (role === 'Engineer') {
+      const engineer = generateEngineer(Employee);
+      teamArray.push(engineer)
+    }
+
+   
+  }) 
+  const employeeCards = teamArray.join('')
+
+    console.log(employeeCards)
     return employeeCards;
-})
 }
 
 
 
 
-const generatePage = function (employeeCards)   {
-  
-    return `
-    <!DOCTYPE html> 
+const generatePage = employeeCards => {
+
+  return `
+  <!--  <!DOCTYPE html> -->
     <html lang="en"> 
     <head>
       <meta charset="UTF-8">
@@ -114,8 +117,8 @@ const generatePage = function (employeeCards)   {
     </html>
     `;
 
-  };
+};
 
 
 
-  module.exports = generatePage;
+module.exports = generatePage;

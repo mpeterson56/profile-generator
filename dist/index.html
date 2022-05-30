@@ -1,5 +1,5 @@
 
-    <!DOCTYPE html> 
+  <!--  <!DOCTYPE html> -->
     <html lang="en"> 
     <head>
       <meta charset="UTF-8">
@@ -23,33 +23,40 @@
         
     <body class="uk-grid-small uk-child-width-expand uk-text-center uk-flex-center">
 
-   (employeeArray) => {
-  console.log(employeeArray);
-teamArray = [];
-
-employeeArray.forEach(element => {
-  let Employee = element;
-  let role = element.getRole();
-  console.log(element)
- if (role === 'Manager'){
-   const Manager=generateManager(Employee);
-   teamArray.push(Manager)
- }
- if (role === 'Intern'){
-  const Intern=generateIntern(Employee);
-  teamArray.push(Intern)
-}
-if (role === 'Engineer'){
-  const Engineer=generateEngineer(Employee);
-  teamArray.push(Engineer)
-}
-
-const employeeCards = teamArray.join('')
-
-console.log(employeeCards)
-    return employeeCards;
-})
-}
+   
+    
+    <div class=" manager uk-card uk-card-default uk-card-body ">
+    <h2 class="uk-background-primary" > mike  </h2>
+    <h3 class="uk-background-primary" >   Manager   </h3>
+    <h4>  ID:  1   </h4>
+    <h4>Email: <a href="mailto:M@mail.com">M@mail.com  </a>   </h4>
+    <h4> Office Number:   7  </h4>
+       </div>
+    
+    
+    
+  
+  <div class=" Engineer uk-card uk-card-default uk-card-body ">
+  <h2 class="uk-background-primary" > hubby  </h2>
+  <h3 class="uk-background-primary" >   Engineer   </h3>
+  <h4>  ID:  2   </h4>
+  <h4>Email: <a href="mailto:M@mail.com">M@mail.com  </a>   </h4>
+  <h4>  Github: <a href="https://github.com/ hub">hub </a>  </h4>
+     </div>
+  
+  
+  
+  
+  <div class=" Intern uk-card uk-card-default uk-card-body ">
+  <h2 class="uk-background-primary" > schooly schoolerson  </h2>
+  <h3 class="uk-background-primary" >  Intern  </h3>
+  <h4>  ID:  3   </h4>
+  <h4>Email: <a href="mailto:M@mail.com">M@mail.com  </a>   </h4>
+  <h4>  school: ucd  </h4>
+     </div>
+  
+  
+  
  
     </body>
     
