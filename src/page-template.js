@@ -47,7 +47,33 @@ const generateIntern = Intern => {
 }
 
 
+generateTeam = (employeeArray) => {
+  console.log(employeeArray);
+teamArray = [];
 
+employeeArray.forEach(element => {
+  let Employee = element;
+  let role = element.getRole();
+  console.log(element)
+ if (role === 'Manager'){
+   const Manager=generateManager(Employee);
+   teamArray.push(Manager)
+ }
+ if (role === 'Intern'){
+  const Intern=generateIntern(Employee);
+  teamArray.push(Intern)
+}
+if (role === 'Engineer'){
+  const Engineer=generateEngineer(Employee);
+  teamArray.push(Engineer)
+}
+
+const employeeCards = teamArray.join('')
+
+console.log(employeeCards)
+    return employeeCards;
+})
+}
 
 
 
@@ -90,32 +116,6 @@ const generatePage = function (employeeCards)   {
 
   };
 
-  generateTeam = (employeeArray) => {
-    console.log(employeeArray);
-  teamArray = [];
-  
-  employeeArray.forEach(element => {
-    let Employee = element;
-    let role = element.getRole();
-    console.log(element)
-   if (role === 'Manager'){
-     const Manager=generateManager(Employee);
-     teamArray.push(Manager)
-   }
-   if (role === 'Intern'){
-    const Intern=generateIntern(Employee);
-    teamArray.push(Intern)
-  }
-  if (role === 'Engineer'){
-    const Engineer=generateEngineer(Employee);
-    teamArray.push(Engineer)
-  }
-  
-  const employeeCards = teamArray.join('')
-  
-console.log(employeeCards)
-      return employeeCards;
-  })
-  }
+
 
   module.exports = generatePage;
