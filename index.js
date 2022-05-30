@@ -7,6 +7,8 @@ const Intern = require('./lib/intern');
 const generatePage = require('./src/page-template');
 const Manager = require('./lib/manager');
 
+
+
 const employeeArray = [];
 
 const promptquestions = () => {
@@ -14,7 +16,7 @@ const promptquestions = () => {
     return inquirer.prompt([
       {
         type: 'input',
-        name: 'manager',
+        name: 'name',
         message: 'What is managers name? (Required)',
         validate: managerInput => {
           if (managerInput) {
@@ -25,13 +27,7 @@ const promptquestions = () => {
           }
         }
       },
-{
-type:'confirm',
-name:'role',
-message: 'confirm manager?',
-default:true
 
-},
 
 
 
@@ -81,9 +77,11 @@ default:true
 
 
  ]).then(addManager => {
-const {name, id ,role, email ,officeNumber} = addManager;
-const manager = new Manager (name, id,role, email , officeNumber);
-   employeeArray.push(Manager)
+const {name, id , email ,officeNumber} = addManager;
+const manager = new Manager (name, id, email , officeNumber);
+
+   employeeArray.push(manager)
+   console.log(employeeArray);
  }
    );
  
@@ -193,16 +191,30 @@ const promptQuestions = () => {
     
     ])
     .then(addEmployee => {
-      const {name, id ,role, email ,github, school} = addEmployee;
-      const employee = new Employee (name, id,role, email , github, school);
-         employeeArray.push(Employee)
+      const {name, id ,role, email ,github, school, officeNumber} = addEmployee;
+  
 
+if (role === 'engineer'){
+ let engineer = new Engineer (name, id, email, github)
+ employeeArray.push(engineer)
+}
+if (role === 'intern') {
+let  intern= new Intern(name , id , email, school)
+employeeArray.push(intern)
+}
+else if (role === 'manager'){
+let  manager = new Manager(name, id, email, officeNumber)
+employeeArray.push(manager)
+}
+        
+  console.log(employeeArray)
 
       if (addEmployee.confirmAddEmployee) {
         return promptQuestions(employeeArray);
       } else {
-        return Employee;
+        return employeeArray;
       }
+    
     });
     };
 
@@ -213,7 +225,7 @@ promptquestions()
 .then(employeeArray => {
     const pageHTML = generatePage(employeeArray);
 
-    fs.writeFile('./index.html', pageHTML, err => {
+    fs.writeFile('./dist/index.html', pageHTML, err => {
       if (err) throw new Error(err);
 
       console.log('Page created! Check out index.html in this directory to see it!');
